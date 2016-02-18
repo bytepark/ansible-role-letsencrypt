@@ -1,0 +1,3 @@
+---
+- name: Clone/Update from github
+  git: repo=https://github.com/lukas2511/letsencrypt.sh.git dest=/opt/letsencrypt.sh
