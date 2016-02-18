@@ -1,4 +1,4 @@
-Role Name
+letsencrypt
 =========
 
 Ansible role to install letsencrypt bash client
