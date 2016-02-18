@@ -13,7 +13,7 @@ galaxy_info:
   # - GPLv3
   # - Apache
   # - CC-BY
-  license: license (GPLv2, CC-BY, etc)
+  license: license MIT
   min_ansible_version: 1.2
   #
   # Below are all platforms currently available. Just uncomment
@@ -39,9 +39,9 @@ galaxy_info:
   #  - 11.1
   #  - 11.2
   #  - 11.3
-  #- name: Fedora
-  #  versions:
-  #  - all
+  - name: Fedora
+    versions:
+    - all
   #  - 16
   #  - 17
   #  - 18
@@ -91,9 +91,9 @@ galaxy_info:
   #  - 9.1
   #  - 9.2
   #  - 9.3
-  #- name: Ubuntu
-  #  versions:
-  #  - all
+  - name: Ubuntu
+    versions:
+    - all
   #  - lucid
   #  - maverick
   #  - natty
@@ -119,9 +119,9 @@ galaxy_info:
   #  versions:
   #  - all
   #  - any
-  #- name: Debian
-  #  versions:
-  #  - all
+  - name: Debian
+    versions:
+    - all
   #  - etch
   #  - jessie
   #  - lenny
@@ -131,7 +131,7 @@ galaxy_info:
   # Below are all categories currently available. Just as with
   # the platforms above, uncomment those that apply to your role.
   #
-  #categories:
+categories:
   #- cloud
   #- cloud:ec2
   #- cloud:gce
@@ -142,10 +142,10 @@ galaxy_info:
   #- database:sql
   #- development
   #- monitoring
-  #- networking
+  - networking
   #- packaging
-  #- system
-  #- web
+  - system
+  - web
 dependencies: []
   # List your role dependencies here, one per line.
   # Be sure to remove the '[]' above if you add dependencies
