@@ -1,7 +1,7 @@
 letsencrypt
 =========
 
-Ansible role to install letsencrypt bash client
+Ansible role to install letsencrypt.sh BASH client
 
 Requirements
 ------------
@@ -23,7 +23,7 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: letsencrypt }
+         - { role: bytepark.letsencrypt }
 
 License
 -------
