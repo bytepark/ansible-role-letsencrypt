@@ -11,6 +11,7 @@ install:
   - sudo pip install ansible==2.0.1.0
 script:
   - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
+  - ansible-playbook -i tests/inventory tests/test.yml --conection=local --sudo
   - /opt/letsencrypt.sh --help
 notifications:
     webhooks: https://galaxy.ansible.com/api/v1/notifications/
