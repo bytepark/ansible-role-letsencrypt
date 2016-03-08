@@ -1,1 +1,1 @@
-{}
+{"virtualbox":{"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/napcae/git/ansible-role-letsencrypt","disabled":false,"__vagrantfile":true}}}
