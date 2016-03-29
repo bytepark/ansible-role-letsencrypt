@@ -2,16 +2,38 @@
 language: python
 python: "2.7"
 
-before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq python-apt
+env:
+  - PLAYBOOK=test.yml
+
+# Install ansible
+addons:
+  apt:
+    packages:
+    - python-pip
 
 install:
-  - sudo pip install ansible==2.0.1.0
+  # Install ansible
+  - pip install ansible
+
+  # Check ansible version
+  - ansible --version
+
 script:
-  - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
-  - ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo
-  - /opt/letsencrypt.sh/letsencrypt.sh --help
+  - echo localhost > inventory
+
+  # Basic role syntax check
+  - ansible-playbook tests/$PLAYBOOK -i inventory --syntax-check
+
+  # Initial run
+  - ansible-playbook tests/$PLAYBOOK -i inventory --connection=local --sudo
+
+  # Run the role/playbook again, checking to make sure it's idempotent.
+  - >
+    ansible-playbook tests/$PLAYBOOK -i inventory --connection=local --sudo
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
+
 notifications:
-    webhooks: https://galaxy.ansible.com/api/v1/notifications/
-    email: false
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  email: false

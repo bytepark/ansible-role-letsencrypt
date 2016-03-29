@@ -1,4 +1,6 @@
-letsencrypt
+[![Build Status](https://travis-ci.org/bytepark/ansible-role-letsencrypt.svg?branch=master)](https://travis-ci.org/bytepark/ansible-role-letsencrypt)
+
+ansible-role-letsencrypt
 =========
 
 Ansible role to install letsencrypt.sh BASH client
