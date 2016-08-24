@@ -1,12 +1,10 @@
 ---
 - name: Clone/Update from github
-  become: yes
   git: 
     repo: https://github.com/bytepark/letsencrypt.sh.git 
     dest: /opt/letsencrypt.sh
 
-- name: letsencrypt DNS jon
-  become: yes
+- name: letsencrypt DNS job
   cron:
     name: letsencrypt DNS job
     user: root
@@ -17,9 +15,13 @@
 
 - name: letsencrypt HTTP job
   cron:
-    become: yes
     name: letsencrypt HTTP job
     user: root
     minute: "2"
     hour: "2"
     job: 'date >> /var/log/letsencrypt.log && /opt/letsencrypt.sh/letsencrypt.sh -c -k /opt/letsencrypt.sh/hook_nginx.sh >> /var/log/letsencrypt.log 2>&1'
+
+- name: directory for acme challenge
+  file:
+    state: directory
+    path: /etc/ssl/letsencrypt
