@@ -1,4 +1,25 @@
 ---
 - name: Clone/Update from github
   become: yes
-  git: repo=https://github.com/lukas2511/letsencrypt.sh.git dest=/opt/letsencrypt.sh
+  git: 
+    repo: https://github.com/bytepark/letsencrypt.sh.git 
+    dest: /opt/letsencrypt.sh
+
+- name: letsencrypt DNS jon
+  become: yes
+  cron:
+    name: letsencrypt DNS job
+    user: root
+    minute: "1"
+    hour: "1"
+    job: 'date >> /var/log/letsencrypt.log && /opt/letsencrypt.sh/letsencrypt.sh -c -k /opt/letsencrypt.sh/http.net_hook.sh >> /var/log/letsencrypt.log 2>&1'
+    state: present
+
+- name: letsencrypt HTTP job
+  cron:
+    become: yes
+    name: letsencrypt HTTP job
+    user: root
+    minute: "2"
+    hour: "2"
+    job: 'date >> /var/log/letsencrypt.log && /opt/letsencrypt.sh/letsencrypt.sh -c -k /opt/letsencrypt.sh/hook_nginx.sh >> /var/log/letsencrypt.log 2>&1'
